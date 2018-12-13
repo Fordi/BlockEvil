@@ -9,3 +9,5 @@ I'm not an analyst.  You're not an analyst.  I don't need to know what a malicio
 As a bonus, it also prevents BlockAdBlock and other adBlock detectors (which I personally consider to be pretty evil anyway) from operating, since they generally rely on obfuscation via eval.  Most other avenues of script injection are blocked from calling home and messing with the DOM as well, so it should be a while before anyone figures out a way around this.
 
 That said, if you're here from reddit, try to get around this, and create an issue illustrating the problem!  Would love the feedback!
+
+A known issue is that BlockEvil interferes with some of the nicer features of Reddit Enhancement Suite.  They're unavoidable, so you might want to add reddit as an exception for the script.
