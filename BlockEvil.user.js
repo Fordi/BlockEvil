@@ -32,11 +32,15 @@
     };
     const noEvalFor = (obj, name) => {
         const real = obj[name];
-        obj[name] = function () {
-            noEval();
-            return real.apply(this, arguments);
-        };
-        return () => (obj[name] = real);
+        Object.defineProperty(obj, name, {
+            configurable: false,
+            writeable: false,
+            enumerable: true,
+            value: function () {
+                noEval();
+                return real.apply(this, arguments);
+            }
+        });
     };
     [
         'insertBefore',
