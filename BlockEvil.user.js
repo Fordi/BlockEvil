@@ -69,4 +69,9 @@
         noEval();
         return new XHR();
     };
+    for (let name in XMLHttpRequest.prototype) {
+        if (XMLHttpRequest.prototype[name] instanceof Function) {
+            noEvalFor(XMLHttpRequest.prototype, name);
+        }
+    }
 })();
