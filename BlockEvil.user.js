@@ -38,7 +38,7 @@
             }
         });
     };
-    [ 'insertBefore', 'addEventListener', 'appendChild', 'removeChild', 'querySelector', 'querySelectorAll', 'innerHTML', 'fetch', 'createElement' ].forEach(name => {
+    [ 'insertBefore', 'addEventListener', 'appendChild', 'removeChild', 'querySelector', 'querySelectorAll', 'innerHTML', 'fetch', 'createElement', 'open' ].forEach(name => {
         [ window, document, document.body ].concat([].call(document.body.children)).forEach(el => {
             if (el[name] instanceof Function) {
                 noEvalFor(el, name);
