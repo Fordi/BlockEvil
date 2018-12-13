@@ -2,7 +2,7 @@
 // @name         BlockEvil
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  Greasemonkey / Tampermonkey userscript that denies certain functionality to `eval` scripts.
+// @description  Greasemonkey / Tampermonkey userscript that denies call-home functionality to `eval` scripts.
 // @author       Bryan Elliott
 // @match        http*://*/*
 // @grant        none
