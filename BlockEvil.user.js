@@ -21,29 +21,28 @@
         const real = obj[name];
         obj[name] = function () {
             noEval();
-            return real.apply(obj, arguments);
+            return real.apply(this, arguments);
         };
         return () => (obj[name] = real);
     };
-    const noEvalForProp = (obj, prop) => {
-        let value = obj[prop];
-        Object.defineProperty(obj, prop, {
-            get: () => {
-                noEval();
-                return value;
-            },
-            set: (v) => {
-                noEval();
-                value = v;
-            }
-        });
-    };
-    [ 'insertBefore', 'addEventListener', 'appendChild', 'removeChild', 'querySelector', 'querySelectorAll', 'innerHTML', 'fetch', 'createElement', 'open' ].forEach(name => {
-        [ window, document, HTMLElement.prototype ].forEach(el => {
+    [
+        'insertBefore',
+        'addEventListener',
+        'appendChild',
+        'removeChild',
+        'querySelector',
+        'querySelectorAll',
+        'fetch',
+        'createElement',
+        'open',
+        'getElementById',
+        'getElementsByTagName',
+        'getElementsByTagNameNS',
+        'getElementsByClassName',
+    ].forEach(name => {
+        [ window, HTMLDocument.prototype, HTMLElement.prototype ].forEach(el => {
             if (el[name] instanceof Function) {
                 noEvalFor(el, name);
-            } else {
-                noEvalForProp(el, name);
             }
         });
     });
