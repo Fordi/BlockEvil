@@ -11,7 +11,7 @@
 (async function() {
     'use strict';
     const noEval = () => {
-        const stack = new Error().stack;
+        const stack = new Error().stack.split('\n').slice(11);
         window.lastStack = stack;
         if (
             // eval'd script
@@ -69,7 +69,4 @@
         noEval();
         return new XHR();
     };
-    noEvalFor(Object, 'defineProperty');
-    noEvalFor(Object, 'defineProperties');
-
 })();
