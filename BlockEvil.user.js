@@ -8,10 +8,10 @@
 // @grant        none
 // ==/UserScript==
 
-(async function() {
+(function _i_am_root() {
     'use strict';
     const noEval = () => {
-        const stack = new Error().stack.split('\n').slice(11);
+        const stack = new Error().stack.split('\n').slice(3).join('\n');
         window.lastStack = stack;
         if (
             // eval'd script
