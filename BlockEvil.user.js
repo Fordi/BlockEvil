@@ -12,7 +12,6 @@
     'use strict';
     const noEval = () => {
         const stack = new Error().stack.split('\n').slice(3).join('\n');
-        window.lastStack = stack;
         if (
             // eval'd script
             stack.indexOf('eval') !== -1
