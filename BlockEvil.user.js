@@ -43,6 +43,7 @@
         'addEventListener',
         'appendChild',
         'removeChild',
+        'replaceChild',
         'querySelector',
         'querySelectorAll',
         'fetch',
