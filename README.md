@@ -1,6 +1,6 @@
 # BlockEvil
 
-Greasemonkey/TamperMonkey userscript that denies certain functionality to `eval` scripts.
+Greasemonkey/TamperMonkey userscript that denies call-home functionality to `eval` scripts.
 
 Eval is generally used to obfuscate the intent of certain types of scripts, so that analysts must spend a considerable amount of time decoding their intent.
 
