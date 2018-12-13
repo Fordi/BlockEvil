@@ -11,7 +11,20 @@
 (async function() {
     'use strict';
     const noEval = () => {
-        if (new Error().stack.indexOf('eval') !== -1) {
+        const stack = new Error().stack;
+        window.lastStack = stack;
+        if (
+            // eval'd script
+            stack.indexOf('eval') !== -1
+            // Inserted script with data source
+            || /data:[^\/]+\/[^\/]+;/.test(stack)
+            // Inserted script with blob source
+            || stack.indexOf('blob:') !== -1
+            // Chrome's trace for an inserted inline script
+            || stack.indexOf('<anonymous>:1:1') !== -1
+            // Line 1 on an HTML page is the trace in Firefox for an inserted inline script
+            || stack.indexOf(`${location}:1`) !== -1
+        ) {
             var err = new Error('I control my browser, not you.  Stop trying.');
             err.stack = '';
             throw err;
@@ -40,7 +53,7 @@
         'getElementsByTagNameNS',
         'getElementsByClassName',
     ].forEach(name => {
-        [ window, HTMLDocument.prototype, HTMLElement.prototype ].forEach(el => {
+        [ window, document, document.body, HTMLDocument.prototype, HTMLElement.prototype ].forEach(el => {
             if (el[name] instanceof Function) {
                 noEvalFor(el, name);
             }
