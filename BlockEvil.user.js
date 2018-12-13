@@ -6,6 +6,7 @@
 // @author       Bryan Elliott
 // @match        http*://*/*
 // @grant        none
+// @downloadURL  https://github.com/Fordi/BlockEvil/raw/master/BlockEvil.user.js
 // ==/UserScript==
 
 (function _i_am_root() {
