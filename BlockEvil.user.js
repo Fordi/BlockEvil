@@ -39,7 +39,7 @@
         });
     };
     [ 'insertBefore', 'addEventListener', 'appendChild', 'removeChild', 'querySelector', 'querySelectorAll', 'innerHTML', 'fetch', 'createElement', 'open' ].forEach(name => {
-        [ window, document, document.body ].concat([].call(document.body.children)).forEach(el => {
+        [ window, document, HTMLElement.prototype ].forEach(el => {
             if (el[name] instanceof Function) {
                 noEvalFor(el, name);
             } else {
