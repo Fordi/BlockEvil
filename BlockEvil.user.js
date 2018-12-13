@@ -34,14 +34,17 @@
     };
     const noEvalFor = (obj, name) => {
         const real = obj[name];
-        Object.defineProperty(obj, name, {
-            configurable: false,
-            writeable: false,
-            enumerable: true,
-            value: function () {
+        const get = () => {
+            return function () {
                 noEval();
                 return real.apply(this, arguments);
-            }
+            };
+        };
+        const set = (v) => {};
+        Object.defineProperty(obj, name, {
+            configurable: false,
+            enumerable: true,
+            get, set
         });
     };
     [
