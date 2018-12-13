@@ -22,6 +22,8 @@
             || stack.indexOf('blob:') !== -1
             // Chrome's trace for an inserted inline script
             || stack.indexOf('<anonymous>:1:1') !== -1
+            // Line 1 on an HTML page is the trace in Firefox for an inserted inline script
+            || stack.indexOf(`@${location}:1`) !== -1
         ) {
             var err = new Error('I control my browser, not you.  Stop trying.');
             err.stack = '';
