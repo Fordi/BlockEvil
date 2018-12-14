@@ -10,8 +10,20 @@
 // ==/UserScript==
 
 (function _i_am_root() {
+    const captureStackTrace = (() => {
+        try {
+            undefined.break();
+        } catch (e) {
+            return e.constructor.captureStackTrace;
+        }
+    })();
+    const getStack = () => {
+        const x = {};
+        captureStackTrace(x);
+        return x.stack.split('\n').slice(1).join('\n');
+    };
     const isEval = () => {
-        const stack = new Error().stack.split('\n').slice(3).join('\n');
+        const stack = getStack();
         return (
             // eval'd script
             stack.indexOf('eval') !== -1
